@@ -25,7 +25,7 @@ const SearchResults = () => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-4 p-4 container m-auto">
+      <div className="flex flex-wrap justify-center gap-4 p-4 container m-auto">
         {searchResults.map(selectedMovie => (
           <Link
             key={selectedMovie.id}
@@ -43,8 +43,6 @@ const SearchResults = () => {
           </Link>
         ))}
       </div>
-
-
       <div className="mb-14">
         <button onClick={() => { page > 1 && setPage(page - 1) }}>atras</button>
         <button onClick={() => { page < totalPages && setPage(page + 1) }}>siguiente</button>
