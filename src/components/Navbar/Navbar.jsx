@@ -20,6 +20,7 @@ const Navbar = () => {
     e.preventDefault()
     history(`/search/${search}`)
     setSearch('')
+    setIsMenuOpen(!isMenuOpen);
   }
 
   return (
@@ -43,7 +44,7 @@ const Navbar = () => {
             </button>
           </div>
           <div className="flex flex-col lg:flex-row items-center">
-            <Link to={'/'} className=" text-white lg:mr-7 mb-2 lg:mb-0">Inicio</Link>
+            <Link to={'/'} className=" text-white lg:mr-7 mb-2 lg:mb-0" onClick={toggleMenu}>Inicio</Link>
             <a href="" className=" text-white lg:mr-7 mb-2 lg:mb-0">Peliculas</a>
             <a href="" className=" text-white mb-2 lg:mb-0">Series</a>
           </div>
@@ -54,13 +55,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-
-// fuction openMenu(){
-//   let menu = document.getElementById('menu')
-//   if (menu.classList.contains('hidden')) {
-//     menu.classList.remove('hidden')
-//   } else {
-//     menu.classList.add('hidden')
-//   }
-// }

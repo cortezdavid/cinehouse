@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/Home/Home'
 import MovieDetails from './components/MovieDetails/MovieDetails'
+import SerieDetails from './components/SerieDetails/SerieDetails';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/movie/:id' element={<MovieDetails />} />
+        <Route exact path='/serie/:id' element={<SerieDetails />} />
         <Route exact path='/search/:search' element={<SearchResults />} />
       </Routes>
       <Footer />

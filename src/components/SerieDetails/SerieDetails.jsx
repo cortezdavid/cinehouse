@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import options from '../../config/apiOptions';
 import Loading from "../Loading/Loading";
 import Videos from "../Videos/Videos";
 
 
-const MovieDetails = () => {
-  const [movie, setMovie] = useState([])
+const SerieDetails = () => {
+  const [serie, setSerie] = useState([])
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=es-MX`, options)
+    fetch(`https://api.themoviedb.org/3/tv/${id}?language=es-MX`, options)
       .then(response => response.json())
-      .then(response => setMovie(response))
+      .then(response => setSerie(response))
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, [id]);
 
-  const runtimeHours = Math.floor(movie.runtime / 60)
-  const runtimeMinutes = movie.runtime % 60
-  const year = new Date(movie.release_date).getFullYear();
-  console.log(movie);
   return (
     <>
       {loading
@@ -31,34 +27,34 @@ const MovieDetails = () => {
           <>
             <div
               className="relative bg-center bg-cover bg-no-repeat h-full" style={{
-                backgroundImage: `url("https://image.tmdb.org/t/p/w1280${movie.backdrop_path}")`,
+                backgroundImage: `url("https://image.tmdb.org/t/p/w1280${serie.backdrop_path}")`,
               }}
             >
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
               <div className="relative mx-auto max-w-6xl flex flex-col md:flex-row items-start p-4 space-y-4 md:space-y-0 md:space-x-4">
                 <img
                   className="h-48 md:h-full rounded-lg"
-                  src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`} alt={movie.title}
+                  src={`https://image.tmdb.org/t/p/w220_and_h330_face${serie.poster_path}`} alt={serie.title}
                 />
                 <div className="text-white">
-                  <h2 className="text-2xl md:text-4xl font-bold mb-4">{movie.title}</h2>
-                  <p>{movie.tagline}</p>
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4">{serie.name}</h2>
+                  <p>{serie.tagline}</p>
                   <div className="mt-2">
-                    <p><strong>Vista general:</strong> {movie.overview}</p>
-                    <p className="mt-2"><strong>Duración: </strong>{`${runtimeHours}h ${runtimeMinutes}min`} <strong>Año:</strong> {year}</p>
+                    <p><strong>Vista general:</strong> {serie.overview}</p>
+                    <p className="mt-2"><strong>Temporadas: </strong>{serie.number_of_seasons}</p>
                     <p className="mt-2">
-                      <strong>Género:</strong> {movie.genres.map(genero => genero.name).join(', ')}
+                      <strong>Género:</strong> {serie.genres.map(genero => genero.name).join(', ')}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <Videos id={movie.id} category={'movie'} />
+            <Videos id={serie.id} category={'tv'} />
           </>)
       }
     </>
   )
 }
 
-export default MovieDetails
+export default SerieDetails
