@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <div className="relative h-screen-minus-72">
         <div className="absolute inset-0 bg-blue-900 opacity-50"></div>
-        <div className="relative bg-[url('./fondo.jpg')] bg-cover bg-center bg-no-repeat h-full flex flex-col items-center justify-between p-8">
+        <div className="relative bg-[url('../fondo.jpg')] bg-cover bg-center bg-no-repeat h-full flex flex-col items-center justify-between p-8">
           <div className="container flex flex-col md:flex-row m-auto justify-between">
             <div className="relative text-white p-6 bg-opacity-70 bg-black rounded-lg mb-8 md:mb-0 md:max-w-lg md:mr-8 md:flex-1">
               <h1 className="text-3xl font-bold mb-4">CineManía</h1>
